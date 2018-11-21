@@ -7,15 +7,34 @@ marvelApp.getData = function (){
     $.ajax({
         url: 'https://gateway.marvel.com:443/v1/public/characters',
         method: 'GET',
-         dataType: 'json',
+        dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            comic: 'Spider-Man',
+            name: 'Hulk',
         }
     }).then(res => {
-        // marvelApp.displayResults(res);
-        console.log(res);
+        marvelApp.displayResults(res.data.results);
+        // console.log(res);
     })
+    //matty - find out how to add multiple names to array so it shows up in console.log
+}
+
+//G - watch pokemon video and try to link character API to series and/or events API. Maybe have to use REGEX, will have to probably link either character ID from URI to series/events or vice versa
+
+marvelApp.displayResults = function(character){
+    console.log(character);
+    character.forEach((hero) => {
+        if (hero.name){
+    // Matty - make search bar in html and link search to character object from API. On click on "search" button append below info (name, bio) to DOM.
+            $('#character').append(`
+            <div class = 'hero'>
+            <h2>${hero.name}</h2>
+            <p class = 'bio'>${hero.description}</p>
+            <img src='${hero.thumbnail.path}' alt = 'blah'>
+            </div>
+            `)
+        }
+    });
 }
 
 marvelApp.getData();
