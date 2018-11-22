@@ -24,9 +24,26 @@ marvelApp.getData = function (hero){
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        console.log(res.data.results);
-    })
+        console.log('what is this', res.data.results);
+        const heroID = res.data.results[0].id;
+        marvelApp.getComicData(heroID);
+    });
 }
+
+marvelApp.getComicData = function(heroID){
+    $.ajax({
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/comics`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            apikey: marvelApp.apiKey,
+            limit: 30,
+        }
+    }).then(res =>{
+        // marvelApp.comicResults(res.data.results)
+        console.log(res);
+    })
+};
 
 marvelApp.searchHero = function() {
     $("form.search").on('submit', function(e){
@@ -55,6 +72,7 @@ marvelApp.displayResults = function (characters) {
         }
     });
 }
+
 
 
 
