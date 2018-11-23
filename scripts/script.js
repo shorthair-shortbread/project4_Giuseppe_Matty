@@ -1,14 +1,6 @@
 
 const marvelApp = {};
-
 // const heroes = ['Spider-man', 'Wolverine', 'Peepee Man'];
-
-//Document Ready\\
-$(function () {
-
-    marvelApp.init();
-
-});
 
 marvelApp.init = function () {
     // marvelApp.getData();
@@ -17,8 +9,9 @@ marvelApp.init = function () {
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
 
+//------API call for Hero Character---------------------------
 //Have the hero variable from searchHero function as parameter
-marvelApp.getData = function (hero){
+marvelApp.getData = function (hero) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters?name=${hero}`,
         method: 'GET',
@@ -31,14 +24,15 @@ marvelApp.getData = function (hero){
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        // console.log('what is this', res.data.results);
+        console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
     });
 }
 
-marvelApp.getEventsData = function(heroID){
+//------API call for Hero Events ------------
+marvelApp.getEventsData = function (heroID) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/events`,
         method: 'GET',
@@ -49,11 +43,12 @@ marvelApp.getEventsData = function(heroID){
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
-        // console.log(res.data.results);
+        console.log(res.data.results);
     })
 };
 
-marvelApp.getSeriesData = function(heroID) {
+//------API call for Hero Series-------------
+marvelApp.getSeriesData = function (heroID) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
         method: 'GET',
@@ -64,24 +59,27 @@ marvelApp.getSeriesData = function(heroID) {
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
-        // console.log(res.data.results);
+        console.log(res.data.results);
     })
 };
 
-marvelApp.searchHero = function() {
-    $("form.search").on('submit', function(e){
+//Search bar function for Characters
+marvelApp.searchHero = function () {
+    $("form.search").on('submit', function (e) {
         e.preventDefault();
         let hero = $(".hero").val();
         $(".hero").val('');
-        // console.log(hero);
+        console.log(hero);
 
         //Pass hero variable into getData function as an argument
+        $("#series").html('');
+        $("#events").html('');
         marvelApp.getData(hero);
     })
 }
 
 marvelApp.displayResults = function (characters) {
-    console.log(characters);
+    // console.log(characters);
     characters.forEach((character) => {
         if (character.name) {
             $('#character').html('');
@@ -96,38 +94,58 @@ marvelApp.displayResults = function (characters) {
     });
 }
 
-marvelApp.eventResults = function(comicevents){
+//EVENTS FUNCTION for Appending Information
+marvelApp.eventResults = function (comicevents) {
     console.log(comicevents);
     comicevents.forEach((comicevent) => {
-        if (comicevent.title) {
-            $('#events').html('');
-            $('#events').append(`
-            <div class = 'events-container'>
-            <h2>${comicevent.title}</h2>
-            <p class = 'title'>${comicevent.description}</p>
-            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-            </div>
-            `)
+        //if no description is available, append empty
+        let description = comicevent.description;
+        if (description === null) {
+            let description = '';
+            marvelApp.eventAppend(coimcevent, description);
+        } else {
+            marvelApp.eventAppend(comicevent, description);
         }
     });
 }
 
+marvelApp.eventAppend = function (comicevent, description) {
+    $('#events').append(`
+        <div class='single-event-container'>
+            <h2>${comicevent.title}</h2>
+            <p class = 'title'>${description}</p>
+            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+        </div>
+    `);
+}
+
+
+//SERIES FUNCTION for Appending Information
 marvelApp.seriesResults = function (comicsseries) {
     console.log(comicsseries);
     comicsseries.forEach((comicseries) => {
-        if (comicseries.title) {
-            $('#series').html('');
-            $('#series').append(`
-            <div class = 'series-container'>
-            <h2>${comicseries.title}</h2>
-            <p class = 'title'>${comicseries.description}</p>
-            <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
-            </div>
-            `)
+        let description = comicseries.description;
+        //if no description is available, append empty
+        if (description === null) {
+            let description = '';
+
+            marvelApp.appendSeries(comicseries, description);
+
+        } else {
+            marvelApp.appendSeries(comicseries, description);
         }
     });
 }
 
+marvelApp.appendSeries = function (comicseries, description) {
+    $('#series').append(`
+        <div class = 'single-series-container'>
+            <h2>${comicseries.title}</h2>
+            <p class = 'title'>${description}</p>
+            <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
+        </div>
+    `)
+}
 
 
 
@@ -142,7 +160,7 @@ marvelApp.seriesResults = function (comicsseries) {
 //Have button at end of page that scrolls back to top of page on click.
 
 
-//Document Ready\\
+//---------Document Ready---------\\
 $(function () {
 
     marvelApp.init();
