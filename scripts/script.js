@@ -18,13 +18,10 @@ marvelApp.getData = function (hero) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            // limit: 100,
-            // offset: 1000,
-            // name: "Spider-Man"
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        console.log('what is this', res.data.results);
+        // console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
@@ -39,11 +36,13 @@ marvelApp.getEventsData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 30,
+            limit: 50,
+
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
-        console.log(res.data.results);
+        // marvelApp.arrayRandomizer(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -55,11 +54,13 @@ marvelApp.getSeriesData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 30,
+            limit: 50,
+            // count:,
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
-        console.log(res.data.results);
+        // marvelApp.arrayRandomizer(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -69,7 +70,7 @@ marvelApp.searchHero = function () {
         e.preventDefault();
         let hero = $(".hero").val();
         $(".hero").val('');
-        console.log(hero);
+        // console.log(hero);
 
         //Pass hero variable into getData function as an argument
         $("#series").html('');
@@ -95,19 +96,23 @@ marvelApp.displayResults = function (characters) {
 }
 
 //EVENTS FUNCTION for Appending Information
-marvelApp.eventResults = function (comicevents) {
-    console.log(comicevents);
-    comicevents.forEach((comicevent) => {
-        //if no description is available, append empty
-        let description = comicevent.description;
-        if (description === null) {
-            let description = '';
-            marvelApp.eventAppend(coimcevent, description);
-        } else {
-            marvelApp.eventAppend(comicevent, description);
-        }
-    });
-}
+marvelApp.eventResults = function (comicsEvents) {
+    console.log(comicsEvents);
+    const events = comicsEvents.filter(function(comic) {
+        // console.log(comic.thumbnail.path);
+        return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+    })
+        events.forEach((comicevent) => {
+            //if no description is available, append empty
+            let description = comicevent.description;
+            if (description === null) {
+                let description = '';
+                marvelApp.eventAppend(coimcevent, description);
+            } else {
+                marvelApp.eventAppend(comicevent, description);
+            }
+        });
+    }
 
 marvelApp.eventAppend = function (comicevent, description) {
     $('#events').append(`
@@ -119,23 +124,35 @@ marvelApp.eventAppend = function (comicevent, description) {
     `);
 }
 
-
 //SERIES FUNCTION for Appending Information
-marvelApp.seriesResults = function (comicsseries) {
-    console.log(comicsseries);
-    comicsseries.forEach((comicseries) => {
-        let description = comicseries.description;
-        //if no description is available, append empty
-        if (description === null) {
-            let description = '';
+marvelApp.seriesResults = function (comicsSeries) {
+    console.log(comicsSeries);
+    const comix = comicsSeries.filter(function(comic){
+        // console.log(comic.thumbnail.path);
+        return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+    })
+        comix.forEach((comicseries) => {
+            let description = comicseries.description;
+            //if no description is available, append empty
+            if (description === null) {
+                let description = '';
+                marvelApp.appendSeries(comicseries, description);
+            } else {
+                marvelApp.appendSeries(comicseries, description);
+            }
+        })
+    }
 
-            marvelApp.appendSeries(comicseries, description);
+    //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 
-        } else {
-            marvelApp.appendSeries(comicseries, description);
-        }
-    });
-}
+    // const comicArray = []
+    // marvelApp.arrayRandomizer = function(comicArray){
+    //     const index = Math.floor(Math.random() * comicArray.length)
+    //     return comicArray.length[index];
+    // }
+    // for (index = 0; index < 20; index++){
+    //     comicArray.push(marvelApp.arrayRandomizer);
+    //     }
 
 marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
@@ -148,6 +165,8 @@ marvelApp.appendSeries = function (comicseries, description) {
         </div>
     `)
 }
+
+
 
 
 
