@@ -96,19 +96,23 @@ marvelApp.displayResults = function (characters) {
 }
 
 //EVENTS FUNCTION for Appending Information
-marvelApp.eventResults = function (comicevents) {
-    console.log(comicevents);
-    comicevents.forEach((comicevent) => {
-        //if no description is available, append empty
-        let description = comicevent.description;
-        if (description === null) {
-            let description = '';
-            marvelApp.eventAppend(coimcevent, description);
-        } else {
-            marvelApp.eventAppend(comicevent, description);
-        }
-    });
-}
+marvelApp.eventResults = function (comicsEvents) {
+    console.log(comicsEvents);
+    const events = comicsEvents.filter(function(comic) {
+        // console.log(comic.thumbnail.path);
+        return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+    })
+        events.forEach((comicevent) => {
+            //if no description is available, append empty
+            let description = comicevent.description;
+            if (description === null) {
+                let description = '';
+                marvelApp.eventAppend(coimcevent, description);
+            } else {
+                marvelApp.eventAppend(comicevent, description);
+            }
+        });
+    }
 
 marvelApp.eventAppend = function (comicevent, description) {
     $('#events').append(`
@@ -120,32 +124,35 @@ marvelApp.eventAppend = function (comicevent, description) {
     `);
 }
 
-
 //SERIES FUNCTION for Appending Information
-marvelApp.seriesResults = function (comicsseries) {
-    console.log(comicsseries);
-    const comix = comicsseries.filter(function(comic){
-        console.log(comic.thumbnail.path);
+marvelApp.seriesResults = function (comicsSeries) {
+    console.log(comicsSeries);
+    const comix = comicsSeries.filter(function(comic){
+        // console.log(comic.thumbnail.path);
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     })
-    console.log(comix);
+        comix.forEach((comicseries) => {
+            let description = comicseries.description;
+            //if no description is available, append empty
+            if (description === null) {
+                let description = '';
+                marvelApp.appendSeries(comicseries, description);
+            } else {
+                marvelApp.appendSeries(comicseries, description);
+            }
+        })
+    }
 
     //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
-    // comicsseries.forEach((comicseries) => {
-    //     let description = comicseries.description;
-    //     //if no description is available, append empty
-    //     if (description === null) {
-    //         let description = '';
-    //         marvelApp.appendSeries(comicseries, description);
-    //     } else {
-    //         marvelApp.appendSeries(comicseries, description);
+
+    // const comicArray = []
+    // marvelApp.arrayRandomizer = function(comicArray){
+    //     const index = Math.floor(Math.random() * comicArray.length)
+    //     return comicArray.length[index];
+    // }
+    // for (index = 0; index < 20; index++){
+    //     comicArray.push(marvelApp.arrayRandomizer);
     //     }
-        // let thumbnail.path = comicseries.thumbnail.path;
-        // if (thumbnail.path === "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/598e2ab495a36"){
-        //     let ${'.single-series-container'} = 
-        // }
-//     });
-}
 
 marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
@@ -157,14 +164,6 @@ marvelApp.appendSeries = function (comicseries, description) {
     `)
 }
 
-const comicArray = []
-marvelApp.arrayRandomizer = function(comicArray){
-    const index = Math.floor(Math.random() * comicArray.length)
-    return comicArray.length[index];
-}
-for (index = 0; index < 20; index++){
-    comicArray.push(marvelApp.arrayRandomizer);
-    }
 
 
 
