@@ -3,6 +3,13 @@ const marvelApp = {};
 
 // const heroes = ['Spider-man', 'Wolverine', 'Peepee Man'];
 
+//Document Ready\\
+$(function () {
+
+    marvelApp.init();
+
+});
+
 marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
@@ -24,7 +31,7 @@ marvelApp.getData = function (hero){
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        console.log('what is this', res.data.results);
+        // console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
@@ -42,7 +49,7 @@ marvelApp.getEventsData = function(heroID){
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -57,7 +64,7 @@ marvelApp.getSeriesData = function(heroID) {
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -66,7 +73,7 @@ marvelApp.searchHero = function() {
         e.preventDefault();
         let hero = $(".hero").val();
         $(".hero").val('');
-        console.log(hero);
+        // console.log(hero);
 
         //Pass hero variable into getData function as an argument
         marvelApp.getData(hero);
