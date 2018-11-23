@@ -26,22 +26,38 @@ marvelApp.getData = function (hero){
         marvelApp.displayResults(res.data.results);
         console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
-        marvelApp.getComicData(heroID);
+        marvelApp.getEventsData(heroID);
+        marvelApp.getSeriesData(heroID);
     });
 }
 
-marvelApp.getComicData = function(heroID){
+marvelApp.getEventsData = function(heroID){
     $.ajax({
-        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/comics`,
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/events`,
         method: 'GET',
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
             limit: 30,
         }
-    }).then(res =>{
-        // marvelApp.comicResults(res.data.results)
-        console.log(res);
+    }).then(res => {
+        marvelApp.eventResults(res.data.results);
+        console.log(res.data.results);
+    })
+};
+
+marvelApp.getSeriesData = function(heroID) {
+    $.ajax({
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            apikey: marvelApp.apiKey,
+            limit: 30,
+        }
+    }).then(res => {
+        marvelApp.seriesResults(res.data.results);
+        console.log(res.data.results);
     })
 };
 
@@ -67,6 +83,38 @@ marvelApp.displayResults = function (characters) {
             <h2>${character.name}</h2>
             <p class = 'bio'>${character.description}</p>
             <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
+            </div>
+            `)
+        }
+    });
+}
+
+marvelApp.eventResults = function(comicevents){
+    console.log(comicevents);
+    comicevents.forEach((comicevent) => {
+        if (comicevent.title) {
+            $('#events').html('');
+            $('#events').append(`
+            <div class = 'events-container'>
+            <h2>${comicevent.title}</h2>
+            <p class = 'title'>${comicevent.description}</p>
+            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+            </div>
+            `)
+        }
+    });
+}
+
+marvelApp.seriesResults = function (comicsseries) {
+    console.log(comicsseries);
+    comicsseries.forEach((comicseries) => {
+        if (comicseries.title) {
+            $('#series').html('');
+            $('#series').append(`
+            <div class = 'series-container'>
+            <h2>${comicseries.title}</h2>
+            <p class = 'title'>${comicseries.description}</p>
+            <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
             </div>
             `)
         }
