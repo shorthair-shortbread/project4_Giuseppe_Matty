@@ -5,29 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Marvel App</title>
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
-
 <body>
-  <form class="search">
-    <input class="hero" type="text">
-    <input type="submit">
-    <div id="character"></div>
-
-  </form>
-
-  <section class="series-section">
-    <h2>Series</h2>
-    <div id="series" class="series-container"> </div>
-  </section>
-
-  <section class="event-section">
-    <h2>Events</h2>
-    <div id="events" class="events-container"></div>
-  </section>
-
-
-  <!-- SCRIPTS ----------------------------------------------------------- -->
+  <header>
+    <div class="wrapper">
+      <!-- LOGO DIV to be inserted -->
+      <form class="search">
+        <input class="hero" type="text">
+        <input type="submit">
+        <div id="character"></div>
+      </form>
+    </div>
+  </header>
+  <main>
+    <section class="app-description">
+      <!-- DESCRIPTION of app to be inserted -->
+    </section>
+    <!-- Series Section -->
+    <section class="series-section">
+      <h2>Series</h2>
+      <div id="series" class="series-container"> </div>
+    </section>
+    <!-- Events Section -->
+    <section class="event-section">
+      <h2>Events</h2>
+      <div id="events" class="events-container"></div>
+    </section>
+  </main>
+  <footer></footer>
+  <!-- SCRIPTS ------------------------------------------------------------->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="scripts/script.js"></script>
 </body>
