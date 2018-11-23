@@ -18,13 +18,10 @@ marvelApp.getData = function (hero) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            // limit: 100,
-            // offset: 1000,
-            // name: "Spider-Man"
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        console.log('what is this', res.data.results);
+        // console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
@@ -39,11 +36,13 @@ marvelApp.getEventsData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 30,
+            limit: 50,
+
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
-        console.log(res.data.results);
+        // marvelApp.arrayRandomizer(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -55,11 +54,13 @@ marvelApp.getSeriesData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 30,
+            limit: 50,
+            // count:,
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
-        console.log(res.data.results);
+        // marvelApp.arrayRandomizer(res.data.results);
+        // console.log(res.data.results);
     })
 };
 
@@ -69,7 +70,7 @@ marvelApp.searchHero = function () {
         e.preventDefault();
         let hero = $(".hero").val();
         $(".hero").val('');
-        console.log(hero);
+        // console.log(hero);
 
         //Pass hero variable into getData function as an argument
         $("#series").html('');
@@ -123,18 +124,27 @@ marvelApp.eventAppend = function (comicevent, description) {
 //SERIES FUNCTION for Appending Information
 marvelApp.seriesResults = function (comicsseries) {
     console.log(comicsseries);
-    comicsseries.forEach((comicseries) => {
-        let description = comicseries.description;
-        //if no description is available, append empty
-        if (description === null) {
-            let description = '';
+    const comix = comicsseries.filter(function(comic){
+        console.log(comic.thumbnail.path);
+        return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+    })
+    console.log(comix);
 
-            marvelApp.appendSeries(comicseries, description);
-
-        } else {
-            marvelApp.appendSeries(comicseries, description);
-        }
-    });
+    //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
+    // comicsseries.forEach((comicseries) => {
+    //     let description = comicseries.description;
+    //     //if no description is available, append empty
+    //     if (description === null) {
+    //         let description = '';
+    //         marvelApp.appendSeries(comicseries, description);
+    //     } else {
+    //         marvelApp.appendSeries(comicseries, description);
+    //     }
+        // let thumbnail.path = comicseries.thumbnail.path;
+        // if (thumbnail.path === "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/598e2ab495a36"){
+        //     let ${'.single-series-container'} = 
+        // }
+//     });
 }
 
 marvelApp.appendSeries = function (comicseries, description) {
@@ -146,6 +156,16 @@ marvelApp.appendSeries = function (comicseries, description) {
         </div>
     `)
 }
+
+const comicArray = []
+marvelApp.arrayRandomizer = function(comicArray){
+    const index = Math.floor(Math.random() * comicArray.length)
+    return comicArray.length[index];
+}
+for (index = 0; index < 20; index++){
+    comicArray.push(marvelApp.arrayRandomizer);
+    }
+
 
 
 
