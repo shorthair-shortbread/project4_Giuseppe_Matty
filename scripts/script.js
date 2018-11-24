@@ -85,6 +85,7 @@ marvelApp.displayResults = function (characters) {
         if (character.name) {
             $('#character').html('');
             $('#character').append(`
+
             <div class = 'wrapper' 
                 <div class = 'character-container'>
                     <h2>${character.name}</h2>
@@ -98,6 +99,7 @@ marvelApp.displayResults = function (characters) {
                     <button class = 'button-events'>Events</button>
                 </div> 
             </div>       
+
             `)
         }
     });
@@ -124,15 +126,16 @@ marvelApp.eventResults = function (comicsEvents) {
     }
 
     
-    // marvelApp.eventAppend = function (comicevent, description) {
-    //     $('#events').append(`
-    //         <div class='single-event-container'>
-    //             <h2>${comicevent.title}</h2>
-    //             <p class = 'title'>${description}</p>
-    //             <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-    //         </div>
-    //     `);
-    // }
+marvelApp.eventAppend = function (comicevent, description) {
+    $('#events').append(`
+        <div class='single-event-container'>
+            <h2>${comicevent.title}</h2>
+            <p class='title'>${description}</p>
+            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+        </div>
+    `);
+}
+
 
 //SERIES FUNCTION for Appending Information
 marvelApp.seriesResults = function (comicsSeries) {
@@ -187,11 +190,18 @@ marvelApp.redBorder = function () {
         // });    
     // $('img').imgCheckbox();
 
-//     const randomComics = [];
-//     for (var i = 0; i < 20; i++)
-//         randomComics.push(getRandomComics);
-    
-// }
+
+marvelApp.appendSeries = function (comicseries, description) {
+    $('#series').append(`
+        <div class="wrapper">
+            <div class='single-series-container'>
+                <h2>${comicseries.title}</h2>
+                <p class='title'>${description}</p>
+                <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
+            </div>
+        </div>
+    `)
+}
 
 //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 
