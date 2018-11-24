@@ -24,3 +24,12 @@ CSS
 
 
 1 randomizer for both functions, call in on both, limit 20 per page, style appended class from JS not from html.
+
+-------------------------------------------------------
+
+CHANGES MADE TO JS:
+Added:
+    characters.forEach((character)
+    -div.wrapper
+    -div around image with a class of character-img
+    -div.buttons-series-events + 2 buttons

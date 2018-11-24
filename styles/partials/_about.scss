@@ -1,0 +1,12 @@
+section.app-description {
+    background: url("../assets/background-2.png") fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding-top: 350px;
+}
+.app-description-text {
+    padding: 10px;
+    background: $light-shade-rgba;
+}

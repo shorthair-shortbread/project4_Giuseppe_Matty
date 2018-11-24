@@ -85,10 +85,16 @@ marvelApp.displayResults = function (characters) {
         if (character.name) {
             $('#character').html('');
             $('#character').append(`
-            <div class='character-container'>
-            <h2>${character.name}</h2>
-            <div class="character-img"><img src='${character.thumbnail.path}.jpg' alt = 'blah'><div>
-            <p class='bio'>${character.description}</p>
+            <div class='wrapper'>
+                <div class='character-container'>
+                    <h2>${character.name}</h2>
+                    <div class="character-img"><img src='${character.thumbnail.path}.jpg' alt = 'blah'><div>
+                    <p class='bio'>${character.description}</p>
+                </div>
+                <div class="buttons-series-events">
+                    <button class="button-series">Series</button>
+                    <button class="button-events">Events</button>
+                </div>
             </div>
             `)
         }
@@ -118,8 +124,8 @@ marvelApp.eventAppend = function (comicevent, description) {
     $('#events').append(`
         <div class='single-event-container'>
             <h2>${comicevent.title}</h2>
-            <p class='title'>${description}</p>
             <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+            <p class='description-text'>${description}</p>
         </div>
     `);
 }
@@ -156,12 +162,10 @@ marvelApp.seriesResults = function (comicsSeries) {
 
 marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
-        <div class="wrapper">
-            <div class='single-series-container'>
-                <h2>${comicseries.title}</h2>
-                <p class='title'>${description}</p>
-                <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
-            </div>
+        <div class='single-series-container'>
+            <h2>${comicseries.title}</h2>
+            <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
+            <p class='description-text'>${description}</p>
         </div>
     `)
 }
