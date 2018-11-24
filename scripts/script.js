@@ -5,6 +5,7 @@ const marvelApp = {};
 marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
+    marvelApp.redBorder();
 }
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
@@ -162,6 +163,10 @@ marvelApp.eventAppend = function (comicevent, description) {
             </div>
         `);
     }
+
+marvelApp.redBorder = function(){
+    $('img').on('click').toggleClass('.red-border');
+}    
         // $('img.checkable').click(function(){
         //     $(this).toggleClass('checked')
         // });    
