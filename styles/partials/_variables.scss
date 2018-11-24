@@ -1,8 +1,40 @@
+// COLOR PALETTE:
 $test-color: tomato;
 $main-color: #2a2a2a;
 $main-color-rgba: rgba(42, 42, 42, 1);
 $accent-color: #c51f27;
 $accent-color-rgba: rgba(197,31,39,1);
-// $light-shade: #F0EFED;
 $light-shade: #fcfcfc;
-$light-shade-rgba: rgba(252,252,252,0.7);
+$light-shade-rgba: rgba(252,252,252,0.8);
+
+// FONT VARIABLES:
+$logo-font: 'Hammersmith One', sans-serif;
+$body-font: 'Roboto', sans-serif;
+
+// FONT MIXINS:
+@mixin logo-font($size) {
+    font-family: $logo-font;
+    font-size: $size;
+    letter-spacing: 1px;
+    color: $main-color;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+@mixin body-font($size) {
+    font-family: $body-font;
+    font-size: $size;
+    color: $main-color;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+@mixin sub-heading-font{
+    font-family: $body-font;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0;
+    font-size: 1.6rem;
+    color: $main-color;
+    margin: 0;
+}
