@@ -5,6 +5,7 @@ marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
     marvelApp.redBorder();
+    marvelApp.backToTop();
 }
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
@@ -95,7 +96,7 @@ marvelApp.getSeriesData = function (heroID) {
 // }
 
 
-//Search bar function for Heroes
+//Search bar method for Heroes
 marvelApp.searchHero = function () {
 
     // $('#search').on('keyup change copy cut', function () {
@@ -152,7 +153,7 @@ marvelApp.displayResults = function (characters) {
     });
 }
 
-//EVENTS FUNCTION to filter out results without image or description from Events API call
+//EVENTS METHOD to filter out results without image or description from Events API call
 marvelApp.eventResults = function (comicsEvents) {
     console.log(comicsEvents);
     //If events have no cover image, do not display
@@ -171,7 +172,7 @@ marvelApp.eventResults = function (comicsEvents) {
         });
     }
 
-//SERIES FUNCTION to filter out results without image or description from Series API call
+//SERIES METHOD to filter out results without image or description from Series API call
 marvelApp.seriesResults = function (comicsSeries) {
     console.log(comicsSeries);
     //If series have no cover image, do not display
@@ -216,7 +217,7 @@ marvelApp.appendSeries = function (comicseries, description) {
     `)
 }
 
-//Function to add border on click of cover image of Series or Events results.
+//Method to add border on click of cover image of Series or Events results.
 marvelApp.redBorder = function () {
     $('#series').on('click', '.single-series-container', function () {
         $(this).toggleClass('red');
@@ -227,7 +228,19 @@ marvelApp.redBorder = function () {
         console.log('it worked');
     });
 };
-    
+
+//Method to add smooth scroll back to top of page from either series or events page
+marvelApp.backToTop = function () {
+    $('.button-to-top').on('click', function () {
+        // scroll.preventDefault();
+        console.log('im clicking')
+        $('html, body').animate({ scrollTop: '0' }, 4000);
+    })
+}    
+
+// $('.back-to-top').click(function(){
+//     $('html, body').animate({scrollTop: 0}, 500);
+// })
     
     
     
