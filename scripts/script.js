@@ -9,8 +9,8 @@ marvelApp.init = function () {
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
 
-//------API call for Hero Character---------------------------
-//Have the hero variable from searchHero function as parameter
+// ------API call for Hero Character---------------------------
+// Have the hero variable from searchHero function as parameter
 marvelApp.getData = function (hero) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters?name=${hero}`,
@@ -20,12 +20,36 @@ marvelApp.getData = function (hero) {
             apikey: marvelApp.apiKey,
         }
     }).then(res => {
+        console.log(res);
         marvelApp.displayResults(res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
     });
 }
+
+
+//Have the hero variable from searchHero function as parameter
+// marvelApp.getCharacterNames = function(searchTerm) {
+//     $.ajax({
+//         url: `https://gateway.marvel.com:443/v1/public/characters`,
+//         method: 'GET',
+//         dataType: 'json',
+//         data: {
+//             apikey: marvelApp.apiKey,
+//             nameStartsWith: searchTerm
+//         }
+//     }).then(res => {
+//         // console.log(res);
+//         marvelApp.displayResults(res.data.results);
+//         // const heroID = res.data.results[0].id;
+//         const heroName = res.data.results[0].name;
+//         console.log("hero name inside of getCharNames function", heroName);
+//         // marvelApp.getEventsData(heroID);
+//         // marvelApp.getSeriesData(heroID);
+//         return heroName;
+//     });
+// }
 
 //------API call for Hero Events linked to Hero ID ------------
 marvelApp.getEventsData = function (heroID) {
@@ -52,7 +76,6 @@ marvelApp.getSeriesData = function (heroID) {
         data: {
             apikey: marvelApp.apiKey,
             limit: 50,
-            // count:,
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
@@ -60,19 +83,50 @@ marvelApp.getSeriesData = function (heroID) {
     })
 };
 
+// marvelApp.heroSearchAutofill = function(userInput, returnedHero){
+//     // take results from API
+//     // append API call results to the DOM in the input bar
+//         // before doing so, string.replace to remove duplicate characters
+//     const heroUserInput = userInput;
+//     const heroEndString = returnedHero.replace(heroUserInput, '');
+//     $('#autocomplete-fill').text(heroEndString);
+//     // console.log(heroEndString);  // Prints: Hy World!
+
+// }
+
+
 //Search bar function for Heroes
 marvelApp.searchHero = function () {
+
+    // $('#search').on('keyup change copy cut', function () {
+        
+    //     marvelApp.currentVal = $(this).val();
+    //     console.log(marvelApp.currentVal);
+    //     const getHeroNames = new Promise(function (resolve, reject) {
+    //         const returnedHeroName = marvelApp.getCharacterNames(marvelApp.currentVal);
+    //         resolve(returnedHeroName);
+    //         console.log("the hero name has been returned", returnedHeroName);
+    //     })
+        
+    //     getHeroNames.then(function(hero){
+    //         marvelApp.heroSearchAutofill(marvelApp.currentVal, hero);
+    //     })
+        
+    // }) 
+
+    
+    
     $('form.search').on('submit', function (e) {
         e.preventDefault();
         let hero = $('.hero').val();
-        $(".hero").val('');
+        $('.hero').val('');
 
         //Pass hero variable into getData function as an argument
-        $("#series").html('');
-        $("#events").html('');
-        marvelApp.getData(hero);
-    })
-}
+        $('#series').html('');
+        $('#events').html('');
+        marvelApp.getData(hero);   
+    });
+};
 
 //Append searched hero information to DOM
 marvelApp.displayResults = function (characters) {
@@ -173,35 +227,6 @@ marvelApp.redBorder = function () {
         console.log('it worked');
     });
 };
-
-
-//create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
-
-
-// marvelApp.shuffle = function(array) {
-//     for (let i = array.length; i < 20; i--) {
-//         const j = Math.floor(Math.random() * i + 1);
-//         [array[i], array[j]] = [array[j], array[i]];
-//         return j;
-//     }
-// }
-
-
-// function getRandomComics(comicArray){
-//     var index = Math.floor(Math.random() * comicArray.length);
-//     return comicArray[index];
-// }
-
-// const comicArray = []
-// marvelApp.arrayRandomizer = function(comicArray){
-//     const index = Math.floor(Math.random() * comicArray.length)
-//     return comicArray.length[index];
-// }
-// for (index = 0; index < 20; index++){
-//     comicArray.push(marvelApp.arrayRandomizer);
-//     }
-    
-    
     
     
     
@@ -219,9 +244,5 @@ marvelApp.redBorder = function () {
 
 //---------Document Ready---------\\
 $(function () {
-
     marvelApp.init();
-
-
-
 });
