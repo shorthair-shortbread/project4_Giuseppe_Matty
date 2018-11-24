@@ -29,7 +29,6 @@ marvelApp.getData = function (hero) {
     });
 }
 
-
 //Have the hero variable from searchHero function as parameter
 // marvelApp.getCharacterNames = function(searchTerm) {
 //     $.ajax({
@@ -135,19 +134,23 @@ marvelApp.displayResults = function (characters) {
         if (character.name) {
             $('#character').html('');
             $('#character').append(`
-                <div class = 'wrapper' 
+                <div class = 'wrapper'>
                     <div class = 'character-container'>
-                        <h2>${character.name}</h2>
-                    <div class = 'character-img'>
+                        <div class = 'character-img'>
                         <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
-                    </div>    
-                        <p class = 'bio'>${character.description}</p>
-                </div>
-                <div class = 'buttons-series-events'>
-                    <button class = 'button-series'>Series</button>
-                    <button class = 'button-events'>Events</button>
-                </div> 
-            </div>       
+                        </div>
+                        <div class = 'character-info'>
+                            <div class = 'character-text'>    
+                                <h2>${character.name}</h2>
+                                <p class = 'bio'>${character.description}</p>
+                            </div>
+                            <div class = 'buttons-series-events'>
+                                <button class = 'button-series'>Series</button>
+                                <button class = 'button-events'>Events</button>
+                            </div> 
+                        </div> 
+                    </div>
+                </div>       
             `)
         }
     });
@@ -194,25 +197,21 @@ marvelApp.seriesResults = function (comicsSeries) {
 //Append results from filtered Events API call to the DOM
 marvelApp.appendEvents = function (comicevent, description) {
     $('#events').append(`
-    <div class = 'wrapper'>
-        <div class = 'single-event-container'>
-            <h2>${comicevent.title}</h2>
-            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-            <p class = 'title'>${description}</p>
-        </div>
-    </div>    
+    <div class = 'single-event-container'>
+        <h2>${comicevent.title}</h2>
+        <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+        <p class = 'title'>${description}</p>
+    </div>   
     `);
 }
 
 //Append results from filtered Series API call to the DOM
 marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
-        <div class = 'wrapper'>
-            <div class = 'single-series-container'>
-                <h2>${comicseries.title}</h2>
-                <p class='title'>${description}</p>
-                <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
-            </div>
+        <div class = 'single-series-container'>
+            <h2>${comicseries.title}</h2>
+            <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
+            <p class='title'>${description}</p>
         </div>
     `)
 }
@@ -237,12 +236,6 @@ marvelApp.backToTop = function () {
         $('html, body').animate({ scrollTop: '0' }, 4000);
     })
 }    
-
-// $('.back-to-top').click(function(){
-//     $('html, body').animate({scrollTop: 0}, 500);
-// })
-    
-    
     
     //have a search bar in a sticky nav/fixed nav so it scrolls with user.
     //create function that allows for any Marvel character to be called into a search bar

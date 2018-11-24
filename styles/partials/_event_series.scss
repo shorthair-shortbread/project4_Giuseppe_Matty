@@ -14,6 +14,32 @@
     }
 }
 
+.single-series-container h2, .single-event-container h2 {
+    @include sub-heading-font;
+}
+
+.button-to-top button {
+    border: none;
+    // margin-top: 20px;
+    background: $accent-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    // @include body-font (1.8rem);
+    // text-transform: uppercase;
+    // font-weight: 700;
+    box-shadow: 4px 4px 0px $main-color,
+                3px 3px 0px $main-color,
+                2px 2px 0px $main-color,
+                1px 1px 0px $main-color;
+
+    &:active {
+        position: relative;
+        bottom: -4px;
+        right: -4px;
+        box-shadow: 0 0 8px $light-shade;    
+    }
+}
 
 
 

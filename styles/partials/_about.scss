@@ -4,9 +4,19 @@ section.app-description {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    padding-top: 350px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-top: 60px;
 }
+
 .app-description-text {
-    padding: 10px;
+    padding: 10px 20px;
+    margin: 0 60px;
     background: $light-shade-rgba;
+    p {
+        @include body-font(1.6rem);
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
 }
