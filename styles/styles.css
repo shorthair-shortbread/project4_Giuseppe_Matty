@@ -187,6 +187,9 @@ header {
   margin: 0;
   color: #fcfcfc; }
 
+.search {
+  margin: 10px; }
+
 section.app-description {
   background: url("../assets/background-2.png") fixed;
   background-repeat: no-repeat;
