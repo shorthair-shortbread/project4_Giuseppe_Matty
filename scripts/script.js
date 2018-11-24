@@ -156,17 +156,32 @@ marvelApp.seriesResults = function (comicsSeries) {
 
 marvelApp.eventAppend = function (comicevent, description) {
     $('#events').append(`
-            <div class='single-event-container'>
-                <h2>${comicevent.title}</h2>
-                <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-                <p class = 'title'>${description}</p>
-            </div>
-        `);
-    }
+    <div class='single-event-container'>
+    <h2>${comicevent.title}</h2>
+    <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+    <p class = 'title'>${description}</p>
+    </div>
+    `);
+}
 
-marvelApp.redBorder = function(){
-    $('img').on('click').toggleClass('.red-border');
-}    
+
+marvelApp.appendSeries = function (comicseries, description) {
+    $('#series').append(`
+    <div class = 'single-series-container'>
+    <h2>${comicseries.title}</h2>
+    <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
+    <p class = 'title'>${description}</p>
+    </div>
+    `)
+};
+
+marvelApp.redBorder = function () {
+    $('#series').on('click', '.single-series-container', function () {
+        $(this).toggleClass('red');
+        console.log('it worked');
+    });
+};
+
         // $('img.checkable').click(function(){
         //     $(this).toggleClass('checked')
         // });    
@@ -181,13 +196,13 @@ marvelApp.redBorder = function(){
 //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 
 
-marvelApp.shuffle = function(array) {
-    for (let i = array.length; i < 20; i--) {
-        const j = Math.floor(Math.random() * i + 1);
-        [array[i], array[j]] = [array[j], array[i]];
-        return j;
-    }
-}
+// marvelApp.shuffle = function(array) {
+//     for (let i = array.length; i < 20; i--) {
+//         const j = Math.floor(Math.random() * i + 1);
+//         [array[i], array[j]] = [array[j], array[i]];
+//         return j;
+//     }
+// }
 
 
 // function getRandomComics(comicArray){
@@ -204,15 +219,6 @@ marvelApp.shuffle = function(array) {
 //     comicArray.push(marvelApp.arrayRandomizer);
 //     }
     
-    marvelApp.appendSeries = function (comicseries, description) {
-        $('#series').append(`
-        <div class = 'single-series-container'>
-            <h2>${comicseries.title}</h2>
-            <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
-            <p class = 'title'>${description}</p>
-        </div>
-        `)
-    };
     
     
     
