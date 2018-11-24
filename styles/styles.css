@@ -132,6 +132,9 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+html {
+  font-size: 62.5%; }
+
 .wrapper {
   max-width: 1280px;
   width: 80%;
@@ -139,6 +142,13 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 main {
   background: #fcfcfc; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  color: #2a2a2a;
+  line-height: 1.2;
+  letter-spacing: 1px; }
 
 header {
   background: #c51f27;
@@ -154,17 +164,92 @@ header {
   -ms-flex-pack: justify;
   justify-content: space-between; }
 
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 10px 0; }
+
+.svg-logo {
+  margin-right: 10px; }
+
+.logo h1 {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #2a2a2a;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin: 0;
+  color: #fcfcfc; }
+
 section.app-description {
   background: url("../assets/background-2.png") fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
-  padding-top: 350px; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 60px; }
 
 .app-description-text {
-  padding: 10px;
-  background: rgba(252, 252, 252, 0.7); }
+  padding: 10px 20px;
+  margin: 0 60px;
+  background: rgba(252, 252, 252, 0.8); }
+  .app-description-text p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.6rem;
+    color: #2a2a2a;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-bottom: 10px; }
+
+.character-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 50px 0; }
+
+.character-img {
+  max-width: 50%; }
+  .character-img img {
+    width: 100%; }
+
+.character-info {
+  max-width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.buttons-series-events button {
+  border: none;
+  background: #c51f27;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  -webkit-box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a;
+  box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a; }
+  .buttons-series-events button:active {
+    position: relative;
+    bottom: -4px;
+    right: -4px;
+    -webkit-box-shadow: 0 0 8px #fcfcfc;
+    box-shadow: 0 0 8px #fcfcfc; }
 
 .series-container, .events-container {
   display: -webkit-box;
@@ -186,6 +271,30 @@ section.app-description {
   .single-series-container img, .single-event-container img {
     max-width: 100%;
     display: block; }
+
+.single-series-container h2, .single-event-container h2 {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0;
+  font-size: 1.6rem;
+  color: #2a2a2a;
+  margin: 0; }
+
+.button-to-top button {
+  border: none;
+  background: #c51f27;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  -webkit-box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a;
+  box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a; }
+  .button-to-top button:active {
+    position: relative;
+    bottom: -4px;
+    right: -4px;
+    -webkit-box-shadow: 0 0 8px #fcfcfc;
+    box-shadow: 0 0 8px #fcfcfc; }
 
 footer {
   background: #2a2a2a; }
