@@ -135,11 +135,72 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .wrapper {
   max-width: 1280px;
   width: 80%;
-  border: 2px solid tomato;
   margin: 0 auto; }
 
-.single-series-container {
+main {
+  background: #fcfcfc; }
+
+header {
+  background: #c51f27;
+  height: 15vh;
+  position: fixed;
+  width: 100%; }
+
+.header-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+
+section.app-description {
+  background: url("../assets/background-2.png") fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  padding-top: 350px; }
+
+.app-description-text {
+  padding: 10px;
+  background: rgba(252, 252, 252, 0.7); }
+
+.series-container, .events-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.single-series-container, .single-event-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 25%; }
+  .single-series-container img, .single-event-container img {
+    max-width: 100%;
+    display: block; }
+
+footer {
+  background: #2a2a2a; }
+
+footer p {
+  color: #fcfcfc; }
+
+.credits {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }

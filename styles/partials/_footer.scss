@@ -1,0 +1,13 @@
+footer {
+    background: $main-color;
+}
+
+footer p {
+    color: $light-shade;
+}
+
+.credits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
