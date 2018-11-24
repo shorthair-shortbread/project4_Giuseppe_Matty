@@ -1,6 +1,5 @@
 
 const marvelApp = {};
-// const heroes = ['Spider-man', 'Wolverine', 'Peepee Man'];
 
 marvelApp.init = function () {
     // marvelApp.getData();
@@ -22,14 +21,13 @@ marvelApp.getData = function (hero) {
         }
     }).then(res => {
         marvelApp.displayResults(res.data.results);
-        // console.log('what is this', res.data.results);
         const heroID = res.data.results[0].id;
         marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
     });
 }
 
-//------API call for Hero Events ------------
+//------API call for Hero Events linked to Hero ID ------------
 marvelApp.getEventsData = function (heroID) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/events`,
@@ -42,12 +40,10 @@ marvelApp.getEventsData = function (heroID) {
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
-        // marvelApp.arrayRandomizer(res.data.results);
-        // console.log(res.data.results);
     })
 };
 
-//------API call for Hero Series-------------
+//------API call for Hero Series linked to Hero ID-------------
 marvelApp.getSeriesData = function (heroID) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
@@ -64,13 +60,12 @@ marvelApp.getSeriesData = function (heroID) {
     })
 };
 
-//Search bar function for Characters
+//Search bar function for Heroes
 marvelApp.searchHero = function () {
-    $("form.search").on('submit', function (e) {
+    $('form.search').on('submit', function (e) {
         e.preventDefault();
-        let hero = $(".hero").val();
+        let hero = $('.hero').val();
         $(".hero").val('');
-        // console.log(hero);
 
         //Pass hero variable into getData function as an argument
         $("#series").html('');
@@ -79,38 +74,35 @@ marvelApp.searchHero = function () {
     })
 }
 
+//Append searched hero information to DOM
 marvelApp.displayResults = function (characters) {
-    // console.log(characters);
     characters.forEach((character) => {
         if (character.name) {
             $('#character').html('');
             $('#character').append(`
-
-            <div class = 'wrapper' 
-                <div class = 'character-container'>
-                    <h2>${character.name}</h2>
+                <div class = 'wrapper' 
+                    <div class = 'character-container'>
+                        <h2>${character.name}</h2>
                     <div class = 'character-img'>
                         <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
                     </div>    
-                    <p class = 'bio'>${character.description}</p>
+                        <p class = 'bio'>${character.description}</p>
                 </div>
                 <div class = 'buttons-series-events'>
                     <button class = 'button-series'>Series</button>
                     <button class = 'button-events'>Events</button>
                 </div> 
             </div>       
-
             `)
         }
     });
 }
 
-//EVENTS FUNCTION for Appending Information
+//EVENTS FUNCTION to filter out results without image or description from Events API call
 marvelApp.eventResults = function (comicsEvents) {
     console.log(comicsEvents);
-    //filter out any events that do not have a cover image.
+    //If events have no cover image, do not display
     const events = comicsEvents.filter(function(comic) {
-        // console.log(comic.thumbnail.path);
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     });
         events.forEach((comicevent) => {
@@ -118,31 +110,18 @@ marvelApp.eventResults = function (comicsEvents) {
             let description = comicevent.description;
             if (description === null) {
                 let description = '';
-                marvelApp.eventAppend(coimcevent, description);
+                marvelApp.appendEvents(coimcevent, description);
             } else {
-                marvelApp.eventAppend(comicevent, description);
+                marvelApp.appendEvents(comicevent, description);
             }
         });
     }
 
-    
-marvelApp.eventAppend = function (comicevent, description) {
-    $('#events').append(`
-        <div class='single-event-container'>
-            <h2>${comicevent.title}</h2>
-            <p class='title'>${description}</p>
-            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-        </div>
-    `);
-}
-
-
-//SERIES FUNCTION for Appending Information
+//SERIES FUNCTION to filter out results without image or description from Series API call
 marvelApp.seriesResults = function (comicsSeries) {
     console.log(comicsSeries);
-    //filter out any series that do not have a cover image
+    //If series have no cover image, do not display
     const comix = comicsSeries.filter(function(comic){
-        // console.log(comic.thumbnail.path);
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     })
     comix.forEach((comicseries) => {
@@ -157,44 +136,24 @@ marvelApp.seriesResults = function (comicsSeries) {
     });
 }
 
-marvelApp.eventAppend = function (comicevent, description) {
+//Append results from filtered Events API call to the DOM
+marvelApp.appendEvents = function (comicevent, description) {
     $('#events').append(`
-    <div class='single-event-container'>
-    <h2>${comicevent.title}</h2>
-    <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
-    <p class = 'title'>${description}</p>
-    </div>
+    <div class = 'wrapper'>
+        <div class = 'single-event-container'>
+            <h2>${comicevent.title}</h2>
+            <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+            <p class = 'title'>${description}</p>
+        </div>
+    </div>    
     `);
 }
 
-
+//Append results from filtered Series API call to the DOM
 marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
-    <div class = 'single-series-container'>
-    <h2>${comicseries.title}</h2>
-    <img src='${comicseries.thumbnail.path}.jpg' alt = 'blah'>
-    <p class = 'title'>${description}</p>
-    </div>
-    `)
-};
-
-marvelApp.redBorder = function () {
-    $('#series').on('click', '.single-series-container', function () {
-        $(this).toggleClass('red');
-        console.log('it worked');
-    });
-};
-
-        // $('img.checkable').click(function(){
-        //     $(this).toggleClass('checked')
-        // });    
-    // $('img').imgCheckbox();
-
-
-marvelApp.appendSeries = function (comicseries, description) {
-    $('#series').append(`
-        <div class="wrapper">
-            <div class='single-series-container'>
+        <div class = 'wrapper'>
+            <div class = 'single-series-container'>
                 <h2>${comicseries.title}</h2>
                 <p class='title'>${description}</p>
                 <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
@@ -202,6 +161,19 @@ marvelApp.appendSeries = function (comicseries, description) {
         </div>
     `)
 }
+
+//Function to add border on click of cover image of Series or Events results.
+marvelApp.redBorder = function () {
+    $('#series').on('click', '.single-series-container', function () {
+        $(this).toggleClass('red');
+        console.log('it worked');
+    });
+    $('#events').on('click', '.single-event-container', function () {
+        $(this).toggleClass('red');
+        console.log('it worked');
+    });
+};
+
 
 //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 
