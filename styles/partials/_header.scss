@@ -1,6 +1,6 @@
 header {
     background: $accent-color;
-    height: 100px;
+    height: 15vh;
     position: fixed;
     width: 100%;
 }
@@ -23,7 +23,7 @@ header {
 
 
 .logo h1 {
-    @include logo-font(2rem);
+    @include logo-font(20);
     margin: 0;
     color: $light-shade;
 }
@@ -36,7 +36,7 @@ header {
 }
 
 .hero {
-    @include body-font(1.6rem);
+    @include body-font(16);
     font-weight: 500;
     border: none;
     padding: 10px 40px;
