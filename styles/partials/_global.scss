@@ -13,9 +13,18 @@ html {
 
 main {
     background: $light-shade;
+    padding-top: 100px;
+    display: none;
 }
 
 body {
     @include body-font(1.6rem);
 }
 
+img {
+    display: block;
+}
+
+.show{
+    display: block;
+}

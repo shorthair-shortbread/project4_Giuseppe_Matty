@@ -5,6 +5,7 @@ marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
     marvelApp.redBorder();
+    marvelApp.backToTop();
 }
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
@@ -35,11 +36,12 @@ marvelApp.getEventsData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 50,
+            limit: 20,
 
         }
     }).then(res => {
         marvelApp.eventResults(res.data.results);
+        marvelApp.showMoreInfo();
     })
 };
 
@@ -51,12 +53,13 @@ marvelApp.getSeriesData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 50,
+            limit: 20,
             // count:,
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
         // console.log(res.data.results);
+        marvelApp.showMoreInfo();
     })
 };
 
@@ -78,6 +81,9 @@ marvelApp.searchHero = function () {
 marvelApp.displayResults = function (characters) {
     characters.forEach((character) => {
         if (character.name) {
+            $("main").show();
+            $(".character-section").css('display', 'flex');
+            $(".app-description").hide();
             $('#character').html('');
             $('#character').append(`
                 <div class = 'wrapper'>
@@ -91,8 +97,8 @@ marvelApp.displayResults = function (characters) {
                                 <p class = 'bio'>${character.description}</p>
                             </div>
                             <div class = 'buttons-series-events'>
-                                <button class = 'button-series'>Series</button>
-                                <button class = 'button-events'>Events</button>
+                                <button class='button-series'>Series</button>
+                                <button class='button-events'>Events</button>
                             </div> 
                         </div> 
                     </div>
@@ -174,6 +180,33 @@ marvelApp.redBorder = function () {
     });
 };
 
+//Function to show series/events
+marvelApp.showMoreInfo = function () {
+    //Toggle Events Section
+    $(".button-events").on('click', function(){
+        console.log("HEllo");
+        $(".event-section").show();
+        $('html, body').animate({
+            scrollTop: $(".event-section").offset().top
+        }, 1000);
+    })
+    //Toggle for Series
+    $(".button-series").on('click', function () {
+        console.log("HEllo");
+        $(".series-section").show();
+        $('html, body').animate({
+            scrollTop: $(".series-section").offset().top
+        }, 1000);
+    })
+}
+
+marvelApp.backToTop = function () {
+    $(".to-top").on('click', function() {
+        $('html, body').animate({
+            scrollTop: $('body').offset().top
+        }, 1000);
+    })
+}
 
 //create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 
