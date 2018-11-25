@@ -522,3 +522,8 @@ footer {
   transition: color 1s; }
   .footer-accreditation a:hover {
     color: #c51f27; }
+
+.red {
+  outline-offset: -1px;
+  -webkit-box-shadow: 0 0 10px #c51f27;
+  box-shadow: 0 0 10px #c51f27; }
