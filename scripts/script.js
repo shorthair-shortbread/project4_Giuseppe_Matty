@@ -76,7 +76,7 @@ marvelApp.getEventsData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 20,
+            limit: 30,
             // count:,
         }
     }).then(res => {
@@ -158,10 +158,10 @@ marvelApp.displayResults = function (characters) {
             $('#character').append(`
                 <div class = 'wrapper'>
                     <div class = 'character-container'>
-                        <div class = 'character-img data-aos="fade-right"'>
-                        <img src='${character.thumbnail.path}.jpg' alt = Drawn image of the searched Marvel comic book character.'>
+                        <div class = 'character-img'>
+                        <img src='${character.thumbnail.path}.jpg' alt = 'Drawn image of the searched Marvel superhero.'>
                         </div>
-                        <div class = 'character-info data-aos="fade-left"'>
+                        <div class = 'character-info'>
                             <div class = 'character-text'>    
                                 <h2>${character.name}</h2>
                                 <p class = 'bio'>${character.description}</p>
@@ -185,19 +185,19 @@ marvelApp.eventResults = function (comicsEvents) {
     const events = comicsEvents.filter(function(comic) {
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     });
-        events.forEach((comicevent) => {
-            //if no description is available, append empty
-            let description = comicevent.description;
-            if (description === null) {
-                let description = '';
-                marvelApp.appendEvents(comicevent, description);
-            } else {
-                marvelApp.appendEvents(comicevent, description);
-            };
-        });
-    }
+    events.forEach((comicevent) => {
+        //if no description is available, append empty
+        let description = comicevent.description;
+        if (description === null) {
+            let description = '';
+            marvelApp.appendEvents(comicevent, description);
+        } else {
+            marvelApp.appendEvents(comicevent, description);
+        }
+    });
+}
 
-//SERIES METHOD to filter out results without image or description from Series API call
+//SERIES FUNCTION to filter out results without image or description from Series API call
 marvelApp.seriesResults = function (comicsSeries) {
     console.log(comicsSeries);
     //If series have no cover image, do not display
@@ -254,7 +254,7 @@ marvelApp.redBorder = function () {
 marvelApp.showMoreInfo = function () {
     //Toggle Events Section
     $(".button-events").on('click', function(){
-        console.log("HEllo");
+        // console.log("HEllo");
         $(".event-section").show();
         $('html, body').animate({
             scrollTop: $(".event-section").offset().top
@@ -262,7 +262,7 @@ marvelApp.showMoreInfo = function () {
     })
     //Toggle for Series
     $(".button-series").on('click', function () {
-        console.log("HEllo");
+        // console.log("HEllo");
         $(".series-section").show();
         $('html, body').animate({
             scrollTop: $(".series-section").offset().top

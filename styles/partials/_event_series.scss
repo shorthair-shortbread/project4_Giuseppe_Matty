@@ -1,12 +1,14 @@
 // Sections Displayed None ----
 .series-section {
     display: none;
-    padding: 100px;
+    padding: 100px 0 50px 0;
+    // padding: 100px 0 0 0;
 }
 
 .event-section {
     display: none;
-    padding: 100px;
+    padding: 100px 0 50px 0;
+    // padding: 100px 0 0 0;
 }
 
 // ----------------------------
@@ -15,42 +17,63 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .single-series-container, .single-event-container {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    max-width: 23%;
+    outline-offset: -1px;
+    box-shadow: 0 0 5px rgba(150, 150, 150, 0.5);
+    border-radius: 8px;
+    // margin-right: 2%;
+    margin: 2% 2% 0 0;
+    padding: 0 5px;
+    transition: all 1s;
+    cursor: pointer;
+    &:nth-of-type(4n){
+        margin-right: 0;
+    }
     img {
         max-width: 100%;
         display: block;
+    }
+    &:hover {
+        background: $accent-color-rgba;
     }
 }
 
 .single-series-container h2, .single-event-container h2 {
     @include sub-heading-font;
+    // margin-bottom: 15px;
+    padding: 15px 0;
 }
 
-.button-to-top button {
-    border: none;
-    // margin-top: 20px;
-    background: $accent-color;
-    padding: 10px 20px;
-    border-radius: 10px;
-    color: white;
-    // @include body-font (1.8rem);
-    // text-transform: uppercase;
-    // font-weight: 700;
-    box-shadow: 4px 4px 0px $main-color,
-                3px 3px 0px $main-color,
-                2px 2px 0px $main-color,
-                1px 1px 0px $main-color;
 
-    &:active {
-        position: relative;
-        bottom: -4px;
-        right: -4px;
-        box-shadow: 0 0 8px $light-shade;    
+.section-title {
+    @include title-font;
+}
+
+
+.title {
+    margin-top: 15px;
+}
+
+.button-to-top {
+    display: flex;
+    justify-content: center;
+}
+
+.to-top {
+    margin-top: 30px;
+    border: none;
+    background: none;
+    font-size: 6rem;
+    color: $accent-color-rgba;
+    transition: color 1s;
+    &:hover {
+        color: $accent-color;
     }
 }
 
