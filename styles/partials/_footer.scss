@@ -1,13 +1,29 @@
 footer {
     background: $main-color;
-}
-
-footer p {
-    color: $light-shade;
+    height: 7vh;
 }
 
 .credits {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+}
+
+.credits p {
+    margin: 0;
+    color: rgba(252,252,252,0.6);
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.footer-accreditation a{
+    text-decoration: none;
+    @include body-font(1.2rem);
+    color: rgba(223, 144, 144, 0.6);
+    font-weight: 700;
+    transition: color 1s;
+    &:hover {
+        color: $accent-color;
+    }
 }

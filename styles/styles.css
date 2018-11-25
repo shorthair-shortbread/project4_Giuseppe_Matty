@@ -141,7 +141,9 @@ html {
   margin: 0 auto; }
 
 main {
-  background: #fcfcfc; }
+  background: #fcfcfc;
+  padding-top: 100px;
+  display: none; }
 
 body {
   font-family: "Roboto", sans-serif;
@@ -150,9 +152,15 @@ body {
   line-height: 1.2;
   letter-spacing: 1px; }
 
+img {
+  display: block; }
+
+.show {
+  display: block; }
+
 header {
   background: #c51f27;
-  height: 15vh;
+  height: 100px;
   position: fixed;
   width: 100%; }
 
@@ -195,7 +203,7 @@ section.app-description {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 93vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,11 +226,23 @@ section.app-description {
     font-weight: 400;
     margin-bottom: 10px; }
 
+.example {
+  font-style: italic; }
+
+section.character-section {
+  height: 85vh;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: none; }
+
 .character-container {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  padding: 50px 0; }
+  display: flex; }
 
 .character-img {
   max-width: 50%; }
@@ -241,18 +261,48 @@ section.app-description {
 
 .buttons-series-events button {
   border: none;
-  background: #c51f27;
-  padding: 10px 20px;
+  background: #fcfcfc;
+  padding: 10px 15px;
   border-radius: 10px;
-  color: white;
-  -webkit-box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a;
-  box-shadow: 4px 4px 0px #2a2a2a, 3px 3px 0px #2a2a2a, 2px 2px 0px #2a2a2a, 1px 1px 0px #2a2a2a; }
+  color: #2a2a2a;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  color: #2a2a2a;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  -webkit-box-shadow: 1px 1px #c51f27, 2px 2px #c51f27, 3px 3px #c51f27, 4px 4px 10px #2a2a2a;
+  box-shadow: 1px 1px #c51f27, 2px 2px #c51f27, 3px 3px #c51f27, 4px 4px 10px #2a2a2a;
+  -webkit-transition: background-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out; }
+  .buttons-series-events button:hover {
+    background-color: #c51f27;
+    color: #fcfcfc; }
   .buttons-series-events button:active {
     position: relative;
     bottom: -4px;
-    right: -4px;
-    -webkit-box-shadow: 0 0 8px #fcfcfc;
-    box-shadow: 0 0 8px #fcfcfc; }
+    left: 4px;
+    -webkit-box-shadow: 0 0 8px #c51f27;
+    box-shadow: 0 0 8px #c51f27; }
+
+.button-active {
+  position: relative;
+  bottom: -4px;
+  left: 4px;
+  -webkit-box-shadow: 0 0 8px #c51f27;
+  box-shadow: 0 0 8px #c51f27;
+  background-color: #c51f27;
+  color: #fcfcfc; }
+
+.series-section {
+  display: none;
+  padding: 100px; }
+
+.event-section {
+  display: none;
+  padding: 100px; }
 
 .series-container, .events-container {
   display: -webkit-box;
@@ -278,7 +328,7 @@ section.app-description {
 .single-series-container h2, .single-event-container h2 {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 00;
   letter-spacing: 0;
   font-size: 1.6rem;
   color: #2a2a2a;
@@ -300,10 +350,8 @@ section.app-description {
     box-shadow: 0 0 8px #fcfcfc; }
 
 footer {
-  background: #2a2a2a; }
-
-footer p {
-  color: #fcfcfc; }
+  background: #2a2a2a;
+  height: 7vh; }
 
 .credits {
   display: -webkit-box;
@@ -315,4 +363,26 @@ footer p {
   flex-direction: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  text-align: center; }
+
+.credits p {
+  margin: 0;
+  color: rgba(252, 252, 252, 0.6);
+  font-size: 1.2rem;
+  margin: 5px; }
+
+.footer-accreditation a {
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2a2a2a;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  color: rgba(223, 144, 144, 0.6);
+  font-weight: 700;
+  -webkit-transition: color 1s;
+  -o-transition: color 1s;
+  transition: color 1s; }
+  .footer-accreditation a:hover {
+    color: #c51f27; }
