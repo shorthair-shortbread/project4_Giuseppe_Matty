@@ -1,9 +1,8 @@
 // COLOR PALETTE:
-$test-color: tomato;
 $main-color: #2a2a2a;
 $main-color-rgba: rgba(42, 42, 42, 0.8);
 $accent-color: #c51f27;
-$accent-color-rgba: rgba(197,31,39,1);
+$accent-color-rgba: rgba(197,31,39,0.3);
 $light-shade: #fcfcfc;
 $light-shade-rgba: rgba(252,252,252,0.8);
 
@@ -32,9 +31,19 @@ $body-font: 'Roboto', sans-serif;
 @mixin sub-heading-font{
     font-family: $body-font;
     text-transform: uppercase;
-    font-weight: 00;
+    font-weight: 700;
     letter-spacing: 0;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    color: $main-color;
+    margin: 0;
+}
+
+@mixin title-font{
+    font-family: $body-font;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 4rem;
     color: $main-color;
     margin: 0;
 }

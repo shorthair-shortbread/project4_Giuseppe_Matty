@@ -1,5 +1,5 @@
 section.app-description {
-    background: url("../assets/background-2.png") fixed;
+    background: url("../assets/background-img-1.png") fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -15,12 +15,15 @@ section.app-description {
     margin: 0 60px;
     background: $light-shade-rgba;
     p {
-        @include body-font(1.6rem);
+        @include body-font(1.8rem);
         font-weight: 400;
         margin-bottom: 10px;
+        line-height: 1.5;
     }
-}
-
-.example {
-    font-style: italic;
+    .example {
+        font-style: italic;
+    }
+    .choose {
+        font-weight: 700;
+    }
 }

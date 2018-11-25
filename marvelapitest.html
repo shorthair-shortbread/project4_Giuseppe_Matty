@@ -7,10 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Marvel App</title>
   <link href="https://fonts.googleapis.com/css?family=Hammersmith+One|Roboto:400,500,700" rel="stylesheet">
+  <script defer src='https://use.fontawesome.com/releases/v5.0.8/js/all.js'></script>
+  <link rel="icon" href="assets/favicon.png" sizes="16x16">
   <link rel="stylesheet" href="styles/styles.css">
   <style>
     .red {
-      border: 2px solid red;
+      outline-offset: -1px;
+      box-shadow: 0 0 10px #c51f27;
     }
   </style>
 </head>
@@ -48,10 +51,10 @@
             <h1 class="logo-name">Marvel <br>Collector's <br>Compendium</h1>
           </div>
           <form class="search">
-            <input class="hero" type="text">
-            <input type="submit">
+            <label for="hero" class="hidden-label">Enter Marvel character name:</label>
+            <input class="hero" type="text" placeholder="Character's Name" required id="hero">
+            <input type="submit" class="submit" value="Submit">
           </form>
-        </div>
       </div>
   </header>
   <!-- Description Section -->
@@ -59,9 +62,9 @@
     <div class="wrapper">
       <div class="app-description-text">
         <p class="welcome-text"><strong>Welcome to the ultimate Marvel comics resource!</strong></p> <p>Whether you're just getting into collecting one Marvel
-        superhero, or you're a Marvel comics aficionado, you can now track your collection for EVERY Marvel hero. Just type in
+        series or event from your favourite character, or you're a Marvel comics aficionado, you can now track your collection from EVERY Marvel hero. Just type in
         your favourite superhero's name <span class="example">(ex: Spider-Man, X-Men, Black Panther, etc)</span> and choose to browse through all the series
-        and/or events they are featured in. Then simply click on the ones you own and start building your own collection
+        and/or events they are featured in! Simply <span class="choose">click</span> on the ones you own and start building your own collection
         database!</p>
       </div>
     </div>
@@ -74,20 +77,20 @@
     <!-- Series Section -->
     <section class="series-section">
       <div class="wrapper">
-        <h2>Series</h2>
+        <h2 class="section-title">Series</h2>
         <div id="series" class="series-container"></div>
         <div class="button-to-top">
-          <button class="to-top">back to top</button>
+          <button class="to-top"><i class="fas fa-arrow-alt-circle-up"></i></button>
         </div>
       </div>
     </section>
     <!-- Events Section -->
     <section class="event-section">
       <div class="wrapper">
-        <h2>Events</h2>
+        <h2 class="section-title">Events</h2>
         <div id="events" class="events-container"></div>
         <div class="button-to-top">
-          <button class="to-top">back to top</button>
+          <button class="to-top"><i class="fas fa-arrow-alt-circle-up"></i></button>
         </div>
       </div>
     </section>
