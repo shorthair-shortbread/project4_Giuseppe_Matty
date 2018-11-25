@@ -5,7 +5,7 @@ marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
     marvelApp.redBorder();
-    marvelApp.smoothScroll();
+    marvelApp.backToTop();
 }
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
@@ -60,10 +60,11 @@ marvelApp.getSeriesData = function (heroID) {
         data: {
             apikey: marvelApp.apiKey,
             limit: 30,
+
         }
     }).then(res => {
-        marvelApp.seriesResults(res.data.results);
-        // console.log(res.data.results);
+        marvelApp.eventResults(res.data.results);
+        marvelApp.showMoreInfo();
     })
 };
 
@@ -76,10 +77,12 @@ marvelApp.getEventsData = function (heroID) {
         data: {
             apikey: marvelApp.apiKey,
             limit: 20,
-
+            // count:,
         }
     }).then(res => {
-        marvelApp.eventResults(res.data.results);
+        marvelApp.seriesResults(res.data.results);
+        // console.log(res.data.results);
+        marvelApp.showMoreInfo();
     })
 };
 
@@ -148,21 +151,24 @@ marvelApp.searchHero = function () {
 marvelApp.displayResults = function (characters) {
     characters.forEach((character) => {
         if (character.name) {
+            $("main").show();
+            $(".character-section").css('display', 'flex');
+            $(".app-description").hide();
             $('#character').html('');
             $('#character').append(`
                 <div class = 'wrapper'>
                     <div class = 'character-container'>
-                        <div class = 'character-img'>
+                        <div class = 'character-img data-aos="fade-right"'>
                         <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
                         </div>
-                        <div class = 'character-info'>
+                        <div class = 'character-info data-aos="fade-left"'>
                             <div class = 'character-text'>    
                                 <h2>${character.name}</h2>
                                 <p class = 'bio'>${character.description}</p>
                             </div>
                             <div class = 'buttons-series-events'>
-                                <button class = 'button-series'>Series</button>
-                                <button class = 'button-events'>Events</button>
+                                <button class='button-series'>Series</button>
+                                <button class='button-events'>Events</button>
                             </div> 
                         </div> 
                     </div>
@@ -170,7 +176,7 @@ marvelApp.displayResults = function (characters) {
             `)
         }
     });
-}
+};
 
 //EVENTS METHOD to filter out results without image or description from Events API call
 marvelApp.eventResults = function (comicsEvents) {
@@ -184,10 +190,10 @@ marvelApp.eventResults = function (comicsEvents) {
             let description = comicevent.description;
             if (description === null) {
                 let description = '';
-                marvelApp.appendEvents(coimcevent, description);
+                marvelApp.appendEvents(comicevent, description);
             } else {
                 marvelApp.appendEvents(comicevent, description);
-            }
+            };
         });
     }
 
@@ -244,18 +250,36 @@ marvelApp.redBorder = function () {
     });
 };
 
-//Method to add smooth scroll back to top of page from either series or events page
-marvelApp.smoothScroll = function() {
-    $('.button-to-top').on('click', function () {
-        $('html, body').animate({ scrollTop: '0' }, 2000);
-    });
-    $('.search').on('submit', function(){
-        $('html, body').animate({ scrollTop: $('.character-section').offset().top}, 1000);
+//Function to show series/events
+marvelApp.showMoreInfo = function () {
+    //Toggle Events Section
+    $(".button-events").on('click', function(){
+        console.log("HEllo");
+        $(".event-section").show();
+        $('html, body').animate({
+            scrollTop: $(".event-section").offset().top
+        }, 1000);
+    })
+    //Toggle for Series
+    $(".button-series").on('click', function () {
+        console.log("HEllo");
+        $(".series-section").show();
+        $('html, body').animate({
+            scrollTop: $(".series-section").offset().top
+        }, 1000);
     })
 }
-    
-    //have a search bar in a sticky nav/fixed nav so it scrolls with user.
-    //create function that allows for any Marvel character to be called into a search bar
+
+marvelApp.backToTop = function () {
+    $(".to-top").on('click', function() {
+        $('html, body').animate({
+            scrollTop: $('body').offset().top
+        }, 1000);
+    })
+}
+
+//have a search bar in a sticky nav/fixed nav so it scrolls with user.
+//create function that allows for any Marvel character to be called into a search bar
 //create function to call in image and bio of searched character and link to DOM
 //make two custom buttons that link to 'series' and 'events' paramater in marvel API
 //have the buttons call specific series and events paramater associated with selected characrer
@@ -268,5 +292,6 @@ marvelApp.smoothScroll = function() {
 //---------Document Ready---------\\
 $(function () {
     marvelApp.init();
+    AOS.init();
     $(this).scrollTop(0);
 });

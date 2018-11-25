@@ -1,3 +1,15 @@
+// Sections Displayed None ----
+.series-section {
+    display: none;
+    padding: 100px;
+}
+
+.event-section {
+    display: none;
+    padding: 100px;
+}
+
+// ----------------------------
 
 .series-container, .events-container {
     display: flex;
