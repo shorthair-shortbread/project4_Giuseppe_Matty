@@ -14,15 +14,22 @@ section.app-description {
     padding: 10px 20px;
     margin: 0 60px;
     background: $light-shade-rgba;
+
+    p.welcome-text{
+        font-weight: 700;
+    }
+
     p {
-        @include body-font(1.8rem);
+        @include body-font(18);
         font-weight: 400;
         margin-bottom: 10px;
         line-height: 1.5;
     }
+
     .example {
         font-style: italic;
     }
+    
     .choose {
         font-weight: 700;
     }

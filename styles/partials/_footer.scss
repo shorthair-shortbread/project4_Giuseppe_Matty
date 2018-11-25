@@ -19,7 +19,7 @@ footer {
 
 .footer-accreditation a{
     text-decoration: none;
-    @include body-font(1.2rem);
+    @include body-font(12);
     color: rgba(223, 144, 144, 0.6);
     font-weight: 700;
     transition: color 1s;

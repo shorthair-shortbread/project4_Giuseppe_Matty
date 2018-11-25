@@ -5,14 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Marvel App</title>
   <link href="https://fonts.googleapis.com/css?family=Hammersmith+One|Roboto:400,500,700" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script defer src='https://use.fontawesome.com/releases/v5.0.8/js/all.js'></script>
   <link rel="icon" href="assets/favicon.png" sizes="16x16">
   <link rel="stylesheet" href="styles/styles.css">
+<<<<<<< HEAD
+=======
+  <title>Marvel App</title>
+  <style>
+    .red {
+      outline-offset: -1px;
+      box-shadow: 0 0 20px #c51f27;
+    }
+  </style>
+>>>>>>> b12c43e3b74593a7642f6d01fce2f6017bc409bd
 </head>
 <body>
-  <header>
+  <header id="top">
       <div class="wrapper">
         <div class="header-content">
           <div class="logo">
@@ -55,7 +65,7 @@
   <section class="app-description">
     <div class="wrapper">
       <div class="app-description-text">
-        <p class="welcome-text"><strong>Welcome to the ultimate Marvel comics resource!</strong></p> <p>Whether you're just getting into collecting one Marvel
+        <p class="welcome-text">Welcome to the ultimate Marvel comics resource!</p> <p>Whether you're just getting into collecting one Marvel
         series or event from your favourite character, or you're a Marvel comics aficionado, you can now track your collection from EVERY Marvel hero. Just type in
         your favourite superhero's name <span class="example">(ex: Spider-Man, X-Men, Black Panther, etc)</span> and choose to browse through all the series
         and/or events they are featured in! Simply <span class="choose">click</span> on the ones you own and start building your own collection
@@ -69,7 +79,7 @@
       <div id="character" class="character-container"></div>
     </section>
     <!-- Series Section -->
-    <section class="series-section">
+    <section class="series-section hidden">
       <div class="wrapper">
         <h2 class="section-title">Series</h2>
         <div id="series" class="series-container"></div>
@@ -79,7 +89,7 @@
       </div>
     </section>
     <!-- Events Section -->
-    <section class="event-section">
+    <section class="event-section hidden">
       <div class="wrapper">
         <h2 class="section-title">Events</h2>
         <div id="events" class="events-container"></div>
@@ -106,6 +116,7 @@
   
   <!-- SCRIPTS ------------------------------------------------------------->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="scripts/script.js"></script>
 </body>
 
