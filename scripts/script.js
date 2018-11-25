@@ -159,7 +159,7 @@ marvelApp.displayResults = function (characters) {
                 <div class = 'wrapper'>
                     <div class = 'character-container'>
                         <div class = 'character-img data-aos="fade-right"'>
-                        <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
+                        <img src='${character.thumbnail.path}.jpg' alt = Drawn image of the searched Marvel comic book character.'>
                         </div>
                         <div class = 'character-info data-aos="fade-left"'>
                             <div class = 'character-text'>    
@@ -221,7 +221,7 @@ marvelApp.appendEvents = function (comicevent, description) {
     $('#events').append(`
     <div class = 'single-event-container'>
         <h2>${comicevent.title}</h2>
-        <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+        <img src='${comicevent.thumbnail.path}.jpg' alt = 'Various comic book covers based around Marvel Universe including comic events, of which the searched character is featured in'>
         <p class = 'title'>${description}</p>
     </div>   
     `);
@@ -232,7 +232,7 @@ marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
         <div class = 'single-series-container'>
             <h2>${comicseries.title}</h2>
-            <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
+            <img src='${comicseries.thumbnail.path}.jpg' alt='Various comic book covered based around the Marvel comic series of which the searched character is featured in'>
             <p class='title'>${description}</p>
         </div>
     `)
