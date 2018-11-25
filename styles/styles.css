@@ -132,6 +132,19 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.visuallyhidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden; }
+
 html {
   font-size: 62.5%; }
 
@@ -147,6 +160,7 @@ main {
 
 body {
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
   font-size: 1.6rem;
   color: #2a2a2a;
   line-height: 1.2;
@@ -160,7 +174,7 @@ img {
 
 header {
   background: #c51f27;
-  height: 100px;
+  height: 15vh;
   position: fixed;
   width: 100%; }
 
@@ -190,6 +204,7 @@ header {
 
 .logo h1 {
   font-family: "Hammersmith One", sans-serif;
+  font-size: 20px;
   font-size: 2rem;
   letter-spacing: 1px;
   color: #2a2a2a;
@@ -206,6 +221,7 @@ header {
 
 .hero {
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
   font-size: 1.6rem;
   color: #2a2a2a;
   line-height: 1.2;
@@ -293,8 +309,11 @@ section.app-description {
   padding: 10px 20px;
   margin: 0 60px;
   background: rgba(252, 252, 252, 0.8); }
+  .app-description-text p.welcome-text {
+    font-weight: 700; }
   .app-description-text p {
     font-family: "Roboto", sans-serif;
+    font-size: 18px;
     font-size: 1.8rem;
     color: #2a2a2a;
     line-height: 1.2;
@@ -308,7 +327,7 @@ section.app-description {
     font-weight: 700; }
 
 section.character-section {
-  height: 85vh;
+  height: 80vh;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -318,6 +337,13 @@ section.character-section {
   display: none; }
 
 .character-container {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-size: 2rem;
+  color: #2a2a2a;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  line-height: 1.5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -365,10 +391,11 @@ section.character-section {
   border: none;
   margin-right: 20px;
   background: #fcfcfc;
-  padding: 10px 15px;
+  padding: 15px 25px;
   border-radius: 10px;
   color: #2a2a2a;
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
   font-size: 1.6rem;
   color: #2a2a2a;
   line-height: 1.2;
@@ -407,7 +434,8 @@ section.character-section {
   display: none;
   padding: 100px 0 50px 0; }
 
-.series-container, .events-container {
+.series-container,
+.events-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -416,7 +444,9 @@ section.character-section {
   flex-wrap: wrap;
   margin-top: 30px; }
 
-.single-series-container, .single-event-container {
+.single-series-container,
+.single-event-container {
+  line-height: 1.3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -435,12 +465,15 @@ section.character-section {
   -o-transition: all 1s;
   transition: all 1s;
   cursor: pointer; }
-  .single-series-container:nth-of-type(4n), .single-event-container:nth-of-type(4n) {
+  .single-series-container:nth-of-type(4n),
+  .single-event-container:nth-of-type(4n) {
     margin-right: 0; }
-  .single-series-container img, .single-event-container img {
+  .single-series-container img,
+  .single-event-container img {
     max-width: 100%;
     display: block; }
-  .single-series-container:hover, .single-event-container:hover {
+  .single-series-container:hover,
+  .single-event-container:hover {
     background: rgba(197, 31, 39, 0.3); }
 
 .single-series-container h2, .single-event-container h2 {
@@ -511,6 +544,7 @@ footer {
 .footer-accreditation a {
   text-decoration: none;
   font-family: "Roboto", sans-serif;
+  font-size: 12px;
   font-size: 1.2rem;
   color: #2a2a2a;
   line-height: 1.2;
@@ -522,3 +556,116 @@ footer {
   transition: color 1s; }
   .footer-accreditation a:hover {
     color: #c51f27; }
+
+@media (max-width: 975px) {
+  .wrapper {
+    width: 90%; }
+  .character-container {
+    font-size: 1.8rem; }
+  .single-series-container,
+  .single-event-container {
+    font-size: 1.5rem;
+    line-height: 1.3; } }
+
+@media (max-width: 850px) {
+  input#hero.hero {
+    padding: 10px 25px; }
+  .character-container {
+    font-size: 1.6rem; }
+  .section-title {
+    text-align: center; }
+  .single-series-container,
+  .single-event-container {
+    max-width: 31%; } }
+
+@media (max-width: 750px) {
+  header {
+    height: 22vh; }
+  .header-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .app-description {
+    background-position: top; }
+  .app-description-text {
+    margin: 30px 0 0 0; }
+  .character-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .character-img {
+    width: 40%;
+    margin: 55px 0 0 30px; }
+  .character-text {
+    text-align: center;
+    margin-top: 10px; }
+  .character-info {
+    max-width: 100%; }
+    .character-info .bio {
+      margin: 10px 0 20px 0; }
+  .buttons-series-events button {
+    padding: 10px 40px; }
+  .single-series-container,
+  .single-event-container {
+    max-width: 47%; }
+    .single-series-container h2,
+    .single-event-container h2 {
+      text-align: center; } }
+
+@media (max-width: 650px) {
+  .character-img {
+    width: 100%; } }
+
+@media (max-width: 550px) {
+  .app-description-text {
+    margin: 50px 0 0 0; }
+    .app-description-text p {
+      font-size: 1.6rem; } }
+
+@media (max-width: 460px) {
+  .app-description-text p.welcome-text {
+    text-align: center; }
+  .app-description-text p {
+    font-size: 1.5rem; }
+  .character-img {
+    width: 100%; }
+  .bio {
+    font-size: 1.5rem; }
+  input#hero.hero {
+    padding: 10px 5px; }
+  .buttons-series-events button {
+    padding: 10px 30px; }
+  .single-series-container,
+  .single-event-container {
+    max-width: 100%; }
+    .single-series-container h2,
+    .single-event-container h2 {
+      font-size: 2.3rem; } }
+
+@media (max-width: 400px) {
+  header {
+    height: 25vh; }
+  .app-description-text {
+    margin: 100px 0 0 0; }
+  .search {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0; }
+  input#hero.hero {
+    padding: 10px 20px; }
+  .character-info .bio {
+    font-size: 1.4rem;
+    margin: 10px 0 10px 0; }
+  .character-img {
+    max-width: 60%;
+    margin: 80px 0 0 30px; } }
+
+@media (max-width: 350px) {
+  .buttons-series-events button {
+    padding: 10px 20px; }
+  .credits p {
+    font-size: 1rem; } }
