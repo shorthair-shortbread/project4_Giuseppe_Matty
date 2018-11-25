@@ -57,8 +57,8 @@
     }
     
     .character-img{
-        width: 45%;
-        margin: 40px 0 0 30px;
+        width: 40%;
+        margin: 55px 0 0 30px;
     }
 
     .character-text{
@@ -91,7 +91,7 @@
 @media(max-width: 650px){
 
     .character-img{
-        width: 60%;
+        width: 100%;
     }
 }
 
@@ -165,7 +165,7 @@
 
     .character-info .bio{
         font-size: 1.4rem;
-        padding: 10px 0 5px 0;
+        margin: 10px 0 10px 0;
     }
 
     .character-img{
@@ -175,8 +175,12 @@
     }
 }
 
-@media(max-width: 330px){
+@media(max-width: 350px){
 
+    .buttons-series-events button{
+        padding: 10px 20px;
+    }
+    
     .credits p{
         font-size: 1rem;
     }

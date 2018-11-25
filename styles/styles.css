@@ -327,7 +327,7 @@ section.app-description {
     font-weight: 700; }
 
 section.character-section {
-  height: 85vh;
+  height: 80vh;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -596,8 +596,8 @@ footer {
     -ms-flex-direction: column;
     flex-direction: column; }
   .character-img {
-    width: 45%;
-    margin: 40px 0 0 30px; }
+    width: 40%;
+    margin: 55px 0 0 30px; }
   .character-text {
     text-align: center;
     margin-top: 10px; }
@@ -616,7 +616,7 @@ footer {
 
 @media (max-width: 650px) {
   .character-img {
-    width: 60%; } }
+    width: 100%; } }
 
 @media (max-width: 550px) {
   .app-description-text {
@@ -659,11 +659,13 @@ footer {
     padding: 10px 20px; }
   .character-info .bio {
     font-size: 1.4rem;
-    padding: 10px 0 5px 0; }
+    margin: 10px 0 10px 0; }
   .character-img {
     max-width: 60%;
     margin: 80px 0 0 30px; } }
 
-@media (max-width: 330px) {
+@media (max-width: 350px) {
+  .buttons-series-events button {
+    padding: 10px 20px; }
   .credits p {
     font-size: 1rem; } }
