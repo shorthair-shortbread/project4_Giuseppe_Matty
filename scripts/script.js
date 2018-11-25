@@ -5,7 +5,7 @@ marvelApp.init = function () {
     // marvelApp.getData();
     marvelApp.searchHero();
     marvelApp.redBorder();
-    marvelApp.backToTop();
+    marvelApp.smoothScroll();
 }
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
@@ -59,7 +59,7 @@ marvelApp.getEventsData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 50,
+            limit: 20,
 
         }
     }).then(res => {
@@ -75,7 +75,7 @@ marvelApp.getSeriesData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 50,
+            limit: 20,
         }
     }).then(res => {
         marvelApp.seriesResults(res.data.results);
@@ -229,11 +229,12 @@ marvelApp.redBorder = function () {
 };
 
 //Method to add smooth scroll back to top of page from either series or events page
-marvelApp.backToTop = function () {
+marvelApp.smoothScroll = function () {
     $('.button-to-top').on('click', function () {
-        // scroll.preventDefault();
-        console.log('im clicking')
         $('html, body').animate({ scrollTop: '0' }, 4000);
+    });
+    $('.search').on('submit', function(){
+        $('html, body').animate({ scrollTop: $('.character-section').offset().top}, 1000);
     })
 }    
     
