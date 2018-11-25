@@ -24,8 +24,8 @@ marvelApp.getData = function (hero) {
         console.log(res);
         marvelApp.displayResults(res.data.results);
         const heroID = res.data.results[0].id;
-        marvelApp.getEventsData(heroID);
         marvelApp.getSeriesData(heroID);
+        marvelApp.getEventsData(heroID);
     });
 }
 
@@ -51,6 +51,22 @@ marvelApp.getData = function (hero) {
 //     });
 // }
 
+//------API call for Hero Series linked to Hero ID-------------
+marvelApp.getSeriesData = function (heroID) {
+    $.ajax({
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            apikey: marvelApp.apiKey,
+            limit: 30,
+        }
+    }).then(res => {
+        marvelApp.seriesResults(res.data.results);
+        // console.log(res.data.results);
+    })
+};
+
 //------API call for Hero Events linked to Hero ID ------------
 marvelApp.getEventsData = function (heroID) {
     $.ajax({
@@ -67,21 +83,21 @@ marvelApp.getEventsData = function (heroID) {
     })
 };
 
-//------API call for Hero Series linked to Hero ID-------------
-marvelApp.getSeriesData = function (heroID) {
-    $.ajax({
-        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
-        method: 'GET',
-        dataType: 'json',
-        data: {
-            apikey: marvelApp.apiKey,
-            limit: 20,
-        }
-    }).then(res => {
-        marvelApp.seriesResults(res.data.results);
-        // console.log(res.data.results);
-    })
-};
+// //------API call for Hero Series linked to Hero ID-------------
+// marvelApp.getSeriesData = function (heroID) {
+//     $.ajax({
+//         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
+//         method: 'GET',
+//         dataType: 'json',
+//         data: {
+//             apikey: marvelApp.apiKey,
+//             limit: 20,
+//         }
+//     }).then(res => {
+//         marvelApp.seriesResults(res.data.results);
+//         // console.log(res.data.results);
+//     })
+// };
 
 // marvelApp.heroSearchAutofill = function(userInput, returnedHero){
 //     // take results from API
@@ -229,14 +245,14 @@ marvelApp.redBorder = function () {
 };
 
 //Method to add smooth scroll back to top of page from either series or events page
-marvelApp.smoothScroll = function () {
+marvelApp.smoothScroll = function() {
     $('.button-to-top').on('click', function () {
-        $('html, body').animate({ scrollTop: '0' }, 4000);
+        $('html, body').animate({ scrollTop: '0' }, 2000);
     });
     $('.search').on('submit', function(){
         $('html, body').animate({ scrollTop: $('.character-section').offset().top}, 1000);
     })
-}    
+}
     
     //have a search bar in a sticky nav/fixed nav so it scrolls with user.
     //create function that allows for any Marvel character to be called into a search bar
@@ -252,4 +268,5 @@ marvelApp.smoothScroll = function () {
 //---------Document Ready---------\\
 $(function () {
     marvelApp.init();
+    $(this).scrollTop(0);
 });
