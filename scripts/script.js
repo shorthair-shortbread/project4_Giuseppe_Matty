@@ -53,7 +53,7 @@ marvelApp.getSeriesData = function (heroID) {
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 20,
+            limit: 30,
             // count:,
         }
     }).then(res => {
@@ -89,7 +89,7 @@ marvelApp.displayResults = function (characters) {
                 <div class = 'wrapper'>
                     <div class = 'character-container'>
                         <div class = 'character-img'>
-                        <img src='${character.thumbnail.path}.jpg' alt = 'blah'>
+                        <img src='${character.thumbnail.path}.jpg' alt = 'image of character searched'>
                         </div>
                         <div class = 'character-info'>
                             <div class = 'character-text'>    
@@ -120,7 +120,7 @@ marvelApp.eventResults = function (comicsEvents) {
         let description = comicevent.description;
         if (description === null) {
             let description = '';
-            marvelApp.appendEvents(coimcevent, description);
+            marvelApp.appendEvents(comicevent, description);
         } else {
             marvelApp.appendEvents(comicevent, description);
         }
@@ -151,7 +151,7 @@ marvelApp.appendEvents = function (comicevent, description) {
     $('#events').append(`
     <div class = 'single-event-container'>
         <h2>${comicevent.title}</h2>
-        <img src='${comicevent.thumbnail.path}.jpg' alt = 'blah'>
+        <img src='${comicevent.thumbnail.path}.jpg' alt = 'image of event'>
         <p class = 'title'>${description}</p>
     </div>   
     `);
@@ -162,7 +162,7 @@ marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
         <div class = 'single-series-container'>
             <h2>${comicseries.title}</h2>
-            <img src='${comicseries.thumbnail.path}.jpg' alt='blah'>
+            <img src='${comicseries.thumbnail.path}.jpg' alt='image of series cover'>
             <p class='title'>${description}</p>
         </div>
     `)
@@ -184,7 +184,7 @@ marvelApp.redBorder = function () {
 marvelApp.showMoreInfo = function () {
     //Toggle Events Section
     $(".button-events").on('click', function(){
-        console.log("HEllo");
+        // console.log("HEllo");
         $(".event-section").show();
         $('html, body').animate({
             scrollTop: $(".event-section").offset().top
@@ -192,7 +192,7 @@ marvelApp.showMoreInfo = function () {
     })
     //Toggle for Series
     $(".button-series").on('click', function () {
-        console.log("HEllo");
+        // console.log("HEllo");
         $(".series-section").show();
         $('html, body').animate({
             scrollTop: $(".series-section").offset().top

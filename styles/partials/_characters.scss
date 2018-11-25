@@ -9,7 +9,8 @@ section.character-section {
 
 .character-container {
     display: flex;
-    // padding: 50px 0;
+    align-items: center;
+    width: 100%;
 }
 .character-img {
     max-width: 50%;
@@ -22,11 +23,25 @@ section.character-section {
     max-width: 50%;
     display: flex;
     flex-direction: column;
+    padding-left: 30px;
+    .character-text h2 {
+        @include title-font;
+    }
+}
+
+.bio {
+    margin: 30px 0;
+}
+
+.buttons-series-events {
+    display: flex;
+    justify-content: center;
+
 }
 
 .buttons-series-events button {
     border: none;
-    // margin-top: 20px;
+    margin-right: 20px;
     background: $light-shade;
     padding: 10px 15px;
     border-radius: 10px;
@@ -38,7 +53,7 @@ section.character-section {
     box-shadow: 1px 1px $accent-color,
                 2px 2px $accent-color,
                 3px 3px $accent-color,
-                4px 4px  10px $main-color;
+                4px 4px  10px rgba(150, 150, 150, 0.5);
     transition: background-color 0.3s ease-out;
     &:hover {
         background-color: $accent-color;
@@ -50,12 +65,6 @@ section.character-section {
         left: 4px;
         box-shadow: 0 0 8px $accent-color;    
     }
-    
-
-    // .buttons-series-events:hover {
-    //     background: $accent-color;
-    //     color: $light-shade;
-    // }
 }
 
 .button-active {
