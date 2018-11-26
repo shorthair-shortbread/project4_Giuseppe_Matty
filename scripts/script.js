@@ -2,7 +2,6 @@
 const marvelApp = {};
 
 marvelApp.init = function () {
-    // marvelApp.getData();
     marvelApp.searchHero();
     marvelApp.redBorder();
     marvelApp.backToTop();
@@ -10,8 +9,8 @@ marvelApp.init = function () {
 
 marvelApp.apiKey = '520507c36ce0546fbac236621e58b165';
 
-// ------API call for Hero Character---------------------------
-// Have the hero variable from searchHero function as parameter
+//------API call for Hero Character---------------------------
+//Have the hero variable from searchHero function as parameter
 marvelApp.getData = function (hero) {
     $.ajax({
         url: `https://gateway.marvel.com:443/v1/public/characters?name=${hero}`,
@@ -21,45 +20,22 @@ marvelApp.getData = function (hero) {
             apikey: marvelApp.apiKey,
         }
     }).then(res => {
-        console.log(res);
         marvelApp.displayResults(res.data.results);
         const heroID = res.data.results[0].id;
-        marvelApp.getSeriesData(heroID);
         marvelApp.getEventsData(heroID);
+        marvelApp.getSeriesData(heroID);
     });
 }
 
-//Have the hero variable from searchHero function as parameter
-// marvelApp.getCharacterNames = function(searchTerm) {
-//     $.ajax({
-//         url: `https://gateway.marvel.com:443/v1/public/characters`,
-//         method: 'GET',
-//         dataType: 'json',
-//         data: {
-//             apikey: marvelApp.apiKey,
-//             nameStartsWith: searchTerm
-//         }
-//     }).then(res => {
-//         // console.log(res);
-//         marvelApp.displayResults(res.data.results);
-//         // const heroID = res.data.results[0].id;
-//         const heroName = res.data.results[0].name;
-//         console.log("hero name inside of getCharNames function", heroName);
-//         // marvelApp.getEventsData(heroID);
-//         // marvelApp.getSeriesData(heroID);
-//         return heroName;
-//     });
-// }
-
-//------API call for Hero Series linked to Hero ID-------------
-marvelApp.getSeriesData = function (heroID) {
+//------API call for Hero Events linked to Hero ID ------------
+marvelApp.getEventsData = function (heroID) {
     $.ajax({
-        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/events`,
         method: 'GET',
         dataType: 'json',
         data: {
             apikey: marvelApp.apiKey,
-            limit: 30,
+            limit: 20,
 
         }
     }).then(res => {
@@ -68,10 +44,10 @@ marvelApp.getSeriesData = function (heroID) {
     })
 };
 
-//------API call for Hero Events linked to Hero ID ------------
-marvelApp.getEventsData = function (heroID) {
+//------API call for Hero Series linked to Hero ID-------------
+marvelApp.getSeriesData = function (heroID) {
     $.ajax({
-        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/events`,
+        url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
         method: 'GET',
         dataType: 'json',
         data: {
@@ -86,66 +62,19 @@ marvelApp.getEventsData = function (heroID) {
     })
 };
 
-// //------API call for Hero Series linked to Hero ID-------------
-// marvelApp.getSeriesData = function (heroID) {
-//     $.ajax({
-//         url: `https://gateway.marvel.com:443/v1/public/characters/${heroID}/series`,
-//         method: 'GET',
-//         dataType: 'json',
-//         data: {
-//             apikey: marvelApp.apiKey,
-//             limit: 20,
-//         }
-//     }).then(res => {
-//         marvelApp.seriesResults(res.data.results);
-//         // console.log(res.data.results);
-//     })
-// };
-
-// marvelApp.heroSearchAutofill = function(userInput, returnedHero){
-//     // take results from API
-//     // append API call results to the DOM in the input bar
-//         // before doing so, string.replace to remove duplicate characters
-//     const heroUserInput = userInput;
-//     const heroEndString = returnedHero.replace(heroUserInput, '');
-//     $('#autocomplete-fill').text(heroEndString);
-//     // console.log(heroEndString);  // Prints: Hy World!
-
-// }
-
-
-//Search bar method for Heroes
+//Search bar function for Heroes
 marvelApp.searchHero = function () {
-
-    // $('#search').on('keyup change copy cut', function () {
-        
-    //     marvelApp.currentVal = $(this).val();
-    //     console.log(marvelApp.currentVal);
-    //     const getHeroNames = new Promise(function (resolve, reject) {
-    //         const returnedHeroName = marvelApp.getCharacterNames(marvelApp.currentVal);
-    //         resolve(returnedHeroName);
-    //         console.log("the hero name has been returned", returnedHeroName);
-    //     })
-        
-    //     getHeroNames.then(function(hero){
-    //         marvelApp.heroSearchAutofill(marvelApp.currentVal, hero);
-    //     })
-        
-    // }) 
-
-    
-    
     $('form.search').on('submit', function (e) {
         e.preventDefault();
         let hero = $('.hero').val();
-        $('.hero').val('');
+        $(".hero").val('');
 
         //Pass hero variable into getData function as an argument
-        $('#series').html('');
-        $('#events').html('');
-        marvelApp.getData(hero);   
-    });
-};
+        $("#series").html('');
+        $("#events").html('');
+        marvelApp.getData(hero);
+    })
+}
 
 //Append searched hero information to DOM
 marvelApp.displayResults = function (characters) {
@@ -159,7 +88,7 @@ marvelApp.displayResults = function (characters) {
                 <div class = 'wrapper'>
                     <div class = 'character-container'>
                         <div class = 'character-img'>
-                        <img src='${character.thumbnail.path}.jpg' alt = 'Drawn image of the searched Marvel superhero.'>
+                        <img src='${character.thumbnail.path}.jpg' alt = 'image of character searched'>
                         </div>
                         <div class = 'character-info'>
                             <div class = 'character-text'>    
@@ -176,13 +105,13 @@ marvelApp.displayResults = function (characters) {
             `)
         }
     });
-};
+}
 
-//EVENTS METHOD to filter out results without image or description from Events API call
+//EVENTS FUNCTION to filter out results without image or description from Events API call
 marvelApp.eventResults = function (comicsEvents) {
     console.log(comicsEvents);
     //If events have no cover image, do not display
-    const events = comicsEvents.filter(function(comic) {
+    const events = comicsEvents.filter(function (comic) {
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     });
     events.forEach((comicevent) => {
@@ -201,7 +130,7 @@ marvelApp.eventResults = function (comicsEvents) {
 marvelApp.seriesResults = function (comicsSeries) {
     console.log(comicsSeries);
     //If series have no cover image, do not display
-    const comix = comicsSeries.filter(function(comic){
+    const comix = comicsSeries.filter(function (comic) {
         return comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     })
     comix.forEach((comicseries) => {
@@ -221,7 +150,7 @@ marvelApp.appendEvents = function (comicevent, description) {
     $('#events').append(`
     <div class = 'single-event-container'>
         <h2>${comicevent.title}</h2>
-        <img src='${comicevent.thumbnail.path}.jpg' alt = 'Various comic book covers based around Marvel Universe including comic events, of which the searched character is featured in'>
+        <img src='${comicevent.thumbnail.path}.jpg' alt = 'image of event'>
         <p class = 'title'>${description}</p>
     </div>   
     `);
@@ -232,13 +161,13 @@ marvelApp.appendSeries = function (comicseries, description) {
     $('#series').append(`
         <div class = 'single-series-container'>
             <h2>${comicseries.title}</h2>
-            <img src='${comicseries.thumbnail.path}.jpg' alt='Various comic book covered based around the Marvel comic series of which the searched character is featured in'>
+            <img src='${comicseries.thumbnail.path}.jpg' alt='image of series cover'>
             <p class='title'>${description}</p>
         </div>
     `)
 }
 
-//Method to add border on click of cover image of Series or Events results.
+//Function to add border on click of cover image of Series or Events results.
 marvelApp.redBorder = function () {
     $('#series').on('click', '.single-series-container', function () {
         $(this).toggleClass('red');
@@ -253,7 +182,7 @@ marvelApp.redBorder = function () {
 //Function to show series/events
 marvelApp.showMoreInfo = function () {
     //Toggle Events Section
-    $(".button-events").on('click', function(){
+    $(".button-events").on('click', function () {
         // console.log("HEllo");
         $(".event-section").show();
         $('html, body').animate({
@@ -271,13 +200,14 @@ marvelApp.showMoreInfo = function () {
 }
 
 marvelApp.backToTop = function () {
-    $(".to-top").on('click', function() {
+    $(".to-top").on('click', function () {
         $('html, body').animate({
             scrollTop: $('body').offset().top
         }, 1000);
     })
 }
 
+//create array of 20 unique random numbers between 0 and comix.length. foreach grab the index for the comix array.
 //have a search bar in a sticky nav/fixed nav so it scrolls with user.
 //create function that allows for any Marvel character to be called into a search bar
 //create function to call in image and bio of searched character and link to DOM
@@ -291,7 +221,7 @@ marvelApp.backToTop = function () {
 
 //---------Document Ready---------\\
 $(function () {
+
     marvelApp.init();
-    AOS.init();
-    $(this).scrollTop(0);
+
 });

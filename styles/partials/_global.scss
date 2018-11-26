@@ -18,7 +18,7 @@ main {
 }
 
 body {
-    @include body-font(16);
+    @include body-font(1.6rem);
 }
 
 img {
@@ -28,3 +28,4 @@ img {
 .show{
     display: block;
 }
+
